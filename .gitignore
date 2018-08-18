@@ -1,0 +1,20 @@
+# Exclude all files/directories except the ones I want
+/*
+
+# .gitignore
+!.gitignore
+
+# Readme
+!README.md
+
+# convert_pose_formats
+!convert_pose_formats.cpp
+!convert_pose_formats.hpp
+
+# file_ops
+!file_ops.hpp
+!file_ops.cpp
+
+# random
+!random.hpp
+!random.cpp

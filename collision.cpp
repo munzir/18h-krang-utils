@@ -27,37 +27,46 @@ double kbendLimit = 2.0944;
 // qWaist, qTorso, qLArm0, ... qLArm6, qRArm0, ..., qRArm6
 // negative value (-) is clockwise from parent axis
 
+// qBase limit numbers found by binary searching up to thousandth digit and checking for
+// collision cases at qWaist = 0 for upperqBaseLimit and qWaist = 2 for
+// lowerqBaseLimit
+double lowerqBaseLimit = -1.764;
+double upperqBaseLimit = 1.737;
+
 double lowerJointLimit[] = {0, -1.57, -kpi, -kbendLimit, -kpi, -kbendLimit, -kpi, -kbendLimit, -kpi, -kpi, -kbendLimit, -kpi, -kbendLimit, -kpi, -kbendLimit, -kpi};
 double upperJointLimit[] = {2.88, 1.57, kpi, kbendLimit, kpi, kbendLimit, kpi, kbendLimit, kpi, kpi, kbendLimit, kpi, kbendLimit, kpi, kbendLimit, kpi};
 
 // Functions
 // // First Parent Collision Checking
-// TODO
-bool inFirstParentJointLimits(Eigen::MatrixXd inputPose) {
-    // Check for base angle constraint (has to be b/t -pi/2 and pi/2)
-    //cout << inputPose << endl;
-    //cout << inputPose(0, 1) << endl;
+bool notInFirstParentJointLimits(Eigen::MatrixXd inputPose) {
+
+    // Check for base angle constraintt
     double qBase = inputPose(0, 1);
 
-    if (qBase < 0 || qBase > M_PI) {
-        return false;
+    if (qBase > lowerqBaseLimit || qBase < upperqBaseLimit) {
+        return true;
     }
 
     int startJoint = 8;
     for (int i = 0; i < sizeof(lowerJointLimit)/sizeof(lowerJointLimit[0]); i++) {
         // The rest of the angles
         if (inputPose.row(startJoint + i)(0, 0) < lowerJointLimit[i] || inputPose.row(startJoint + i)(0, 0) > upperJointLimit[i]) {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 // // Collision Check
 // TODO: Need to fix implementation
 bool isColliding(SkeletonPtr robot) {
+
     WorldPtr world(new World);
+
     SkeletonPtr floor = createFloor();
+
+    robot->enableSelfCollisionCheck();
+    robot->disableAdjacentBodyCheck();
 
     world->addSkeleton(floor);
     world->addSkeleton(robot);
@@ -71,7 +80,9 @@ bool isColliding(SkeletonPtr robot) {
     CollisionResult result;
     group->collide(option, &result);
 
-    return result.isCollision();
+    bool inCollision = result.isCollision() || notInFirstParentJointLimits(robot->getPositions());
+
+    return inCollision;
 }
 
 // // World creation for collision checking
@@ -92,8 +103,7 @@ SkeletonPtr createFloor() {
 
     // Put the body into position
     Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
-    //TODO: Need to figure out the spacing
-    tf.translation() = Eigen::Vector3d(0.0, 0.0, -floor_height / 2.0 - 0.02);
+    tf.translation() = Eigen::Vector3d(0.0, 0.0, -floor_height / 2.0 - 0.012);
     body->getParentJoint()->setTransformFromParentBodyNode(tf);
 
     return floor;

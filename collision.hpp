@@ -15,7 +15,7 @@ using namespace dart::utils;
 
 // Function Prototypes
 // // Collision Checking
-bool inFirstParentJointLimits(Eigen::MatrixXd inputpose);
+bool notInFirstParentJointLimits(Eigen::MatrixXd inputpose);
 bool isColliding(SkeletonPtr robot);
 
 // // World creation for collision checking

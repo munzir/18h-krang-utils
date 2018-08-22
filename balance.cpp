@@ -120,8 +120,6 @@ Eigen::MatrixXd balanceAndCollision(Eigen::MatrixXd inputPose, SkeletonPtr fullR
     // Set position of full robot to the pose for transform and collision
     Eigen::MatrixXd balPoseParamsDart = munzirToDart(balPoseParams.transpose());
     fullRobot->setPositions(balPoseParamsDart);
-    fullRobot->enableSelfCollisionCheck();
-    fullRobot->disableAdjacentBodyCheck();
 
     // Reset zero quantities that do no effect balancing (xCOM of robot)
     // TODO: Fix These methods
@@ -130,12 +128,6 @@ Eigen::MatrixXd balanceAndCollision(Eigen::MatrixXd inputPose, SkeletonPtr fullR
     // If qBase is flipped, flip it back to positive angle (2*pi rotation)
     // TODO: Fix These methods
     //balPoseParams = resetQBase(balPoseParams);
-
-    // Check for first parent joint constraints throw exception if fails
-    // TODO
-    //if (!inFirstParentJointLimits(balPoseParams)) {
-    //    throw runtime_error("Pose violates first parent joint limits!");
-    //}
 
     // Run it through collision check
     bool isCollision = false;
@@ -306,9 +298,9 @@ Eigen::MatrixXd resetZeroParams(Eigen::MatrixXd inputPose) {
     //inputPose(2, 0) = aaAngleAxis(2, 0);
 
     //// What we keep same
-    //double d = 0.264; //x
+    //double d = 0; //x
     //double e = 0; //y
-    //double f = 0; //z
+    //double f = 0.264; //z
     //double g = 0; //qLWheel
     //double h = 0; //qRWheel
     //// If kinect changes it might effect balance leave it in

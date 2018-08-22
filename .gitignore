@@ -7,6 +7,14 @@
 # Readme
 !README.md
 
+# balance
+!balance.cpp
+!balance.hpp
+
+# collision
+!collision.cpp
+!collision.hpp
+
 # convert_pose_formats
 !convert_pose_formats.cpp
 !convert_pose_formats.hpp

@@ -133,11 +133,10 @@ Eigen::MatrixXd balanceAndCollision(Eigen::MatrixXd inputPose, SkeletonPtr fullR
     bool isCollision = false;
     if (collisionCheck == true) {
         isCollision = isColliding(fullRobot);
-    }
-
-    // Throw exception if colliding
-    if (isCollision) {
-        throw runtime_error("Pose is in collision!");
+        // Throw exception if colliding
+        if (isCollision) {
+            throw runtime_error("Pose is in collision!");
+        }
     }
 
     // Check the effect of balancing, throw exception if it fails

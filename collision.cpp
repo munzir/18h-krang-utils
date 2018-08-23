@@ -7,6 +7,7 @@
 #include <dart/utils/urdf/urdf.hpp>
 
 #include "collision.hpp"
+#include "convert_pose_formats.hpp"
 
 // Namespaces
 using namespace std;
@@ -39,15 +40,14 @@ double upperJointLimit[] = {2.88, 1.57, kpi, kbendLimit, kpi, kbendLimit, kpi, k
 // Functions
 // // First Parent Collision Checking
 bool notInFirstParentJointLimits(Eigen::MatrixXd inputPose) {
-
     // Check for base angle constraintt
-    double qBase = inputPose(0, 1);
+    double qBase = inputPose.coeff(1, 0);
 
-    if (qBase > lowerqBaseLimit || qBase < upperqBaseLimit) {
+    if (qBase < lowerqBaseLimit || qBase > upperqBaseLimit) {
         return true;
     }
 
-    int startJoint = 8;
+    int startJoint = 7;
     for (int i = 0; i < sizeof(lowerJointLimit)/sizeof(lowerJointLimit[0]); i++) {
         // The rest of the angles
         if (inputPose.row(startJoint + i)(0, 0) < lowerJointLimit[i] || inputPose.row(startJoint + i)(0, 0) > upperJointLimit[i]) {
@@ -60,7 +60,6 @@ bool notInFirstParentJointLimits(Eigen::MatrixXd inputPose) {
 // // Collision Check
 // TODO: Need to fix implementation
 bool isColliding(SkeletonPtr robot) {
-
     WorldPtr world(new World);
 
     SkeletonPtr floor = createFloor();
@@ -80,7 +79,8 @@ bool isColliding(SkeletonPtr robot) {
     CollisionResult result;
     group->collide(option, &result);
 
-    bool inCollision = result.isCollision() || notInFirstParentJointLimits(robot->getPositions());
+    //bool inCollision = result.isCollision() || notInFirstParentJointLimits(dartToMunzir(robot->getPositions(), robot));
+    bool inCollision = notInFirstParentJointLimits(dartToMunzir(robot->getPositions(), robot));
 
     return inCollision;
 }

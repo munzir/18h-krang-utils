@@ -79,8 +79,7 @@ bool isColliding(SkeletonPtr robot) {
     CollisionResult result;
     group->collide(option, &result);
 
-    //bool inCollision = result.isCollision() || notInFirstParentJointLimits(dartToMunzir(robot->getPositions(), robot));
-    bool inCollision = notInFirstParentJointLimits(dartToMunzir(robot->getPositions(), robot));
+    bool inCollision = result.isCollision() || notInFirstParentJointLimits(dartToMunzir(robot->getPositions(), robot));
 
     return inCollision;
 }

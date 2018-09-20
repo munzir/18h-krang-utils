@@ -26,3 +26,6 @@
 # random
 !random.hpp
 !random.cpp
+
+# lqr
+! lqr/mylqr.m

@@ -28,4 +28,6 @@
 !random.cpp
 
 # lqr
-! lqr/mylqr.m
+!/lqr/
+/lqr/*
+!/lqr/mylqr.m

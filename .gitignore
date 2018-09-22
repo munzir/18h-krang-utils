@@ -26,3 +26,14 @@
 # random
 !random.hpp
 !random.cpp
+
+# lqr
+!lqr.hpp
+!lqr.cpp
+
+# eso
+!ESO.hpp
+
+# adrc
+!adrc.hpp
+!adrc.cpp

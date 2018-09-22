@@ -6,35 +6,11 @@
  */
 
 #include "adrc.hpp"
-#include "file_ops.hpp"
 #include "lqr.hpp"
 
 using namespace std;
 using namespace dart;
 using namespace dart::dynamics;
-
-// ==========================================================================
-// Read file for gains
-void readCosts(Eigen::MatrixXd& Q, Eigen::MatrixXd& R) {
-
-    string inputQFilename = "../Q.txt";
-    try {
-        cout << "Reading Q matrix ...\n";
-        Q = readInputFileAsMatrix(inputQFilename);
-        cout << "|-> Done\n";
-    } catch (exception& e) {
-        cout << e.what() << endl;
-    }
-
-    string inputRFilename = "../R.txt";
-    try {
-        cout << "Reading R matrix ...\n";
-        R = readInputFileAsMatrix(inputRFilename);
-        cout << "|-> Done\n";
-    } catch (exception& e) {
-        cout << e.what() << endl;
-    }
-}
 
 // ==========================================================================
 // Get the center of mass of body excluding wheels
@@ -159,12 +135,12 @@ void computeLinearizedDynamics(const SkeletonPtr robot, \
 }
 
 // ==========================================================================
-// 
-void activeDisturbanceRejectionControl( 
+//
+void activeDisturbanceRejectionControl(
   //inputs
-  const Eigen::MatrixXd& A, const Eigen::MatrixXd& B, const Eigen::MatrixXd& Q, const Eigen::MatrixXd& R, 
-  ESO* EthWheel, ESO* EthCOM, const Eigen::VectorXd& B_thWheel, const Eigen::VectorXd& B_thCOM, 
-  const Eigen::VectorXd& state, const Eigen::VectorXd& refState, //refState is (thCOM, dthCOM, thWheels, dthWheels, thSpin, dthSpin) 
+  const Eigen::MatrixXd& A, const Eigen::MatrixXd& B, const Eigen::MatrixXd& Q, const Eigen::MatrixXd& R,
+  ESO* EthWheel, ESO* EthCOM, const Eigen::VectorXd& B_thWheel, const Eigen::VectorXd& B_thCOM,
+  const Eigen::VectorXd& state, const Eigen::VectorXd& refState, //refState is (thCOM, dthCOM, thWheels, dthWheels, thSpin, dthSpin)
   const double& dt,
   // outputs
   Eigen::VectorXd& u_thWheel, Eigen::VectorXd& u_thCOM)
@@ -172,7 +148,7 @@ void activeDisturbanceRejectionControl(
   // LQR for controller gains
   Eigen::VectorXd F = Eigen::VectorXd::Zero(4);
   lqr(A, B, Q, R, F);
-  
+
   // Observer Control Gains
   Eigen::VectorXd K = -F;
   Eigen::VectorXd error = state - refState;
@@ -182,7 +158,7 @@ void activeDisturbanceRejectionControl(
   // Update Extended State Observer
   EthCOM->update(state(0), B_thCOM, u_thCOM, dt);
   EthWheel->update(state(2), B_thWheel, u_thWheel, dt);
-  
+
   // Compensate disturbance
   u_thWheel(0) -= EthWheel->getState()(2)/B_thWheel(1);
   u_thCOM(0)  -= EthCOM->getState()(2)/B_thCOM(1);

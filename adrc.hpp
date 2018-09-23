@@ -37,4 +37,4 @@ void activeDisturbanceRejectionControl(
   const Eigen::VectorXd& state, const Eigen::VectorXd& refState, //refState is (thCOM, dthCOM, thWheels, dthWheels, thSpin, dthSpin)
   const double& dt,
   // outputs
-  Eigen::MatrixXd& K, Eigen::VectorXd& u_thWheel, Eigen::VectorXd& u_thCOM);
+  Eigen::VectorXd& K, Eigen::VectorXd& u_thWheel, Eigen::VectorXd& u_thCOM);

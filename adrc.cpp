@@ -173,7 +173,7 @@ void activeDisturbanceRejectionControl(
   const Eigen::VectorXd& state, const Eigen::VectorXd& refState, //refState is (thCOM, dthCOM, thWheels, dthWheels, thSpin, dthSpin)
   const double& dt,
   // outputs
-  Eigen::VectorXd& u_thWheel, Eigen::VectorXd& u_thCOM)
+  Eigen::VectorXd& K, Eigen::VectorXd& u_thWheel, Eigen::VectorXd& u_thCOM)
 {
   // LQR for controller gains
   Eigen::VectorXd F = Eigen::VectorXd::Zero(4);

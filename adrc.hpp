@@ -28,3 +28,13 @@ void activeDisturbanceRejectionControl(
   const double& dt,
   // outputs
   Eigen::VectorXd& u_thWheel, Eigen::VectorXd& u_thCOM);
+
+// perform ADRC with lqr hacks
+void activeDisturbanceRejectionControl(
+  //inputs
+  const Eigen::MatrixXd& A, const Eigen::MatrixXd& B, const Eigen::MatrixXd& Q, const Eigen::MatrixXd& R, const Eigen::MatrixXd& lqrHackRatios,
+  ESO* EthWheel, ESO* EthCOM, const Eigen::VectorXd& B_thWheel, const Eigen::VectorXd& B_thCOM,
+  const Eigen::VectorXd& state, const Eigen::VectorXd& refState, //refState is (thCOM, dthCOM, thWheels, dthWheels, thSpin, dthSpin)
+  const double& dt,
+  // outputs
+  Eigen::MatrixXd& K, Eigen::VectorXd& u_thWheel, Eigen::VectorXd& u_thCOM);

@@ -7,33 +7,47 @@
 # Readme
 !README.md
 
-# balance
-!balance.cpp
-!balance.hpp
+# Cmake
+!CMakeLists.txt
+!/cmake/
+/cmake/*
+!/cmake/cmake_uninstall.cmake.in
 
-# collision
-!collision.cpp
-!collision.hpp
+# Source
+!/src/
+/src/*
 
-# convert_pose_formats
-!convert_pose_formats.cpp
-!convert_pose_formats.hpp
-
-# file_ops
-!file_ops.hpp
-!file_ops.cpp
-
-# random
-!random.hpp
-!random.cpp
-
-# lqr
-!lqr.hpp
-!lqr.cpp
-
-# eso
-!ESO.hpp
+# Headers
+!/include/
+/include/*
 
 # adrc
-!adrc.hpp
-!adrc.cpp
+!/src/adrc.cpp
+!/include/adrc.hpp
+
+# balance
+!/src/balance.cpp
+!/include/balance.hpp
+
+# collision
+!/src/collision.cpp
+!/include/collision.hpp
+
+# convert_pose_formats
+!/src/convert_pose_formats.cpp
+!/include/convert_pose_formats.hpp
+
+# eso
+!/include/eso.hpp
+
+# file_ops
+!/src/file_ops.cpp
+!/include/file_ops.hpp
+
+# lqr
+!/src/lqr.cpp
+!/include/lqr.hpp
+
+# random
+!/src/random.hpp
+!/include/random.cpp

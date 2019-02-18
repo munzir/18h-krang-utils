@@ -5,6 +5,9 @@
  * @brief This file contains helper functions pertaining to the adrc implementation of balancing
  */
 
+//#include "../include/adrc.hpp"
+//#include "../include/lqr.hpp"
+
 #include "adrc.hpp"
 #include "lqr.hpp"
 
@@ -21,7 +24,7 @@ Eigen::Vector3d getBodyCOM(SkeletonPtr robot) {
 }
 
 // ==========================================================================
-// compute linearized dynamics for lqr as well as B matrix for ESO updates
+// compute linearized dynamics for lqr as well as B matrix for Eso updates
 void computeLinearizedDynamics(const SkeletonPtr robot, \
   Eigen::MatrixXd& A, Eigen::MatrixXd& B, Eigen::VectorXd& B_thWheel, Eigen::VectorXd& B_thCOM) {
      // ********************* Extracting Required Parameters from DART URDF
@@ -139,7 +142,7 @@ void computeLinearizedDynamics(const SkeletonPtr robot, \
 void activeDisturbanceRejectionControl(
   //inputs
   const Eigen::MatrixXd& A, const Eigen::MatrixXd& B, const Eigen::MatrixXd& Q, const Eigen::MatrixXd& R,
-  ESO* EthWheel, ESO* EthCOM, const Eigen::VectorXd& B_thWheel, const Eigen::VectorXd& B_thCOM,
+  Eso* EthWheel, Eso* EthCOM, const Eigen::VectorXd& B_thWheel, const Eigen::VectorXd& B_thCOM,
   const Eigen::VectorXd& state, const Eigen::VectorXd& refState, //refState is (thCOM, dthCOM, thWheels, dthWheels, thSpin, dthSpin)
   const double& dt,
   // outputs
@@ -169,7 +172,7 @@ void activeDisturbanceRejectionControl(
 void activeDisturbanceRejectionControl(
   //inputs
   const Eigen::MatrixXd& A, const Eigen::MatrixXd& B, const Eigen::MatrixXd& Q, const Eigen::MatrixXd& R, const Eigen::MatrixXd& lqrHackRatios,
-  ESO* EthWheel, ESO* EthCOM, const Eigen::VectorXd& B_thWheel, const Eigen::VectorXd& B_thCOM,
+  Eso* EthWheel, Eso* EthCOM, const Eigen::VectorXd& B_thWheel, const Eigen::VectorXd& B_thCOM,
   const Eigen::VectorXd& state, const Eigen::VectorXd& refState, //refState is (thCOM, dthCOM, thWheels, dthWheels, thSpin, dthSpin)
   const double& dt,
   // outputs

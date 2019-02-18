@@ -162,7 +162,7 @@ bool lqr(const Eigen::MatrixXd& A, const Eigen::MatrixXd& B, const Eigen::Matrix
     K << (R.inverse()*(B.transpose()*X)).transpose();
     //K << (X.transpose()*B)*R.inverse();
 
-    
+
 
     return true;
 }

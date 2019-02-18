@@ -1,9 +1,9 @@
 #include <Eigen/Eigen>
 
 
-class ESO {
+class Eso {
 public:
-  ESO(const Eigen::VectorXd& X0, const Eigen::VectorXd& L_) : mL(L_), mX(X0) {
+  Eso(const Eigen::VectorXd& X0, const Eigen::VectorXd& L_) : mL(L_), mX(X0) {
   	int n = X0.size();
   	mA = Eigen::MatrixXd::Zero(n, n);
   	for(int i=0; i<n-1; i++) mA(i, i+1) = 1;

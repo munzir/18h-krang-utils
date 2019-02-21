@@ -49,5 +49,5 @@
 !/include/lqr.hpp
 
 # random
-!/src/random.hpp
-!/include/random.cpp
+!/src/random.cpp
+!/include/random.hpp

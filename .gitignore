@@ -21,33 +21,39 @@
 !/include/
 /include/*
 
+!/include/krang-utils.hpp
+
+# krang-utils
+!/include/krang-utils/
+/include/krang-utils/*
+
 # adrc
 !/src/adrc.cpp
-!/include/adrc.hpp
+!/include/krang-utils/adrc.hpp
 
 # balance
 !/src/balance.cpp
-!/include/balance.hpp
+!/include/krang-utils/balance.hpp
 
 # collision
 !/src/collision.cpp
-!/include/collision.hpp
+!/include/krang-utils/collision.hpp
 
 # convert_pose_formats
 !/src/convert_pose_formats.cpp
-!/include/convert_pose_formats.hpp
+!/include/krang-utils/convert_pose_formats.hpp
 
 # eso
-!/include/eso.hpp
+!/include/krang-utils/eso.hpp
 
 # file_ops
 !/src/file_ops.cpp
-!/include/file_ops.hpp
+!/include/krang-utils/file_ops.hpp
 
 # lqr
 !/src/lqr.cpp
-!/include/lqr.hpp
+!/include/krang-utils/lqr.hpp
 
 # random
 !/src/random.cpp
-!/include/random.hpp
+!/include/krang-utils/random.hpp

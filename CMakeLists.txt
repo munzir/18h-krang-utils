@@ -15,8 +15,7 @@ link_libraries(dart)
 
 # Include the project files
 include_directories(include)
-include_directories(${DART_INCLUDE_DIRS})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(include/krang-utils)
 
 # Collect the source files
 file(GLOB src "src/*.cpp")
@@ -28,9 +27,10 @@ add_library(${PROJECT_NAME} SHARED ${src})
 ## Build scripts
 
 # Install
-install(TARGETS ${PROJECT_NAME} DESTINATION /usr/local/lib/${PROJECT_NAME})
-FILE(GLOB headers "include/*.hpp")
-install(FILES ${headers} DESTINATION /usr/local/include/${PROJECT_NAME})
+FILE(GLOB headers "include/krang-utils/*.hpp")
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+install(FILES include/krang-utils.hpp DESTINATION include)
+install(FILES ${headers} DESTINATION include/${PROJECT_NAME})
 
 message(STATUS " ")
 

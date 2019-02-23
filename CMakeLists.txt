@@ -23,6 +23,7 @@ list(SORT src)
 
 # Build the library
 add_library(${PROJECT_NAME} SHARED ${src})
+target_link_libraries(${PROJECT_NAME} nlopt lapack)
 
 ## Build scripts
 

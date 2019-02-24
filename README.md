@@ -1,18 +1,23 @@
-# 18h-Util
+# 18h-krang-utils
 This repo contains helper files containing functions used throughout the repos of 18.
 
 ## Dependencies
 - DART
  [Dart Homepage](https://dartsim.github.io)
+ 
+- lapack
+
+      sudo apt install liblapack-dev
 
 ## Installation
 
-    git clone https://github.gatech.edu/WholeBodyControlAttempt1/18h-Util
-    cd 18h-Util
+    git clone https://github.gatech.edu/WholeBodyControlAttempt1/18h-krang-utils
+    cd 18h-krang-utils
     mkdir build
     cd build
     cmake ..
     sudo make install
+    sudo ldconfig
 
 ## Uninstall
 To remove system files created by the installation of this repo.

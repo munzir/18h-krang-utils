@@ -4,7 +4,7 @@ This repo contains helper files containing functions used throughout the repos o
 ## Dependencies
 - DART
  [Dart Homepage](https://dartsim.github.io)
- 
+
 - lapack
 
       sudo apt install liblapack-dev
@@ -42,6 +42,9 @@ TODO: Add Description
 ### file\_ops
 Contains methods that help in file operations, such as reading from a file and
 extracting base file name
+
+### linearize\_wip
+Contains a function to compute the linearized dynamics of a WIP
 
 ### lqr
 TODO: Add Description

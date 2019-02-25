@@ -50,6 +50,10 @@
 !/src/file_ops.cpp
 !/include/krang-utils/file_ops.hpp
 
+# linearize_wip
+!/src/linearize_wip.cpp
+!/include/krang-utils/linearize_wip.hpp
+
 # lqr
 !/src/lqr.cpp
 !/include/krang-utils/lqr.hpp

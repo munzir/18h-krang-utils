@@ -12,13 +12,6 @@
 using namespace dart;
 using namespace dart::dynamics;
 
-// get body com
-Eigen::Vector3d getBodyCOM(SkeletonPtr robot);
-
-// compute linearized dynamics
-void computeLinearizedDynamics(const SkeletonPtr robot, \
-  Eigen::MatrixXd& A, Eigen::MatrixXd& B, Eigen::VectorXd& B_thWheel, Eigen::VectorXd& B_thCOM);
-
 // perform ADRC
 void activeDisturbanceRejectionControl(
   //inputs

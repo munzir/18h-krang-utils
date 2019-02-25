@@ -1,9 +1,7 @@
 // Author: Akash Patel
 // Header file for krang-utils library
 
-
-
-#ifndef KRANG-UTILS_HPP
-#define KRANG-UTILS_HPP
+#ifndef KRANG_UTILS_HPP
+#define KRANG_UTILS_HPP
 
 #endif

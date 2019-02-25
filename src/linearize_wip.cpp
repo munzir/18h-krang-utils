@@ -25,9 +25,8 @@ Eigen::Vector3d GetBodyCOM(dart::dynamics::SkeletonPtr robot) {
 // ==========================================================================
 // compute linearized dynamics for lqr as well as B matrix for Eso updates
 void ComputeLinearizedDynamics(const dart::dynamics::SkeletonPtr robot,
-const struct ParametersNotFoundInUrdf& params,
-                               Eigen::MatrixXd& A, Eigen::MatrixXd& B
-                               ) {
+                               const struct ParametersNotFoundInUrdf& params,
+                               Eigen::MatrixXd& A, Eigen::MatrixXd& B) {
   // Wheeled Inverted Pendulum Parameters (symbols taken from the paper)
   double I_ra = params.rotor_inertia;
   double gamma = params.gear_ratio;

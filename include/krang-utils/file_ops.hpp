@@ -17,8 +17,8 @@ using namespace Eigen;
 
 // Function Prototypes
 // // Read file as matrix
-Eigen::MatrixXd readInputFileAsMatrix(string inputPosesFilename, int stopCount, int lineToSkip);
-Eigen::MatrixXd readInputFileAsMatrix(string inputPosesFilename);
+Eigen::MatrixXd readInputFileAsMatrix(string inputPosesFilename, int stopCount, int lineToSkip, bool verbose = false);
+Eigen::MatrixXd readInputFileAsMatrix(string inputPosesFilename, bool verbose = false);
 
 //template<typename M>
 //M load_file (const std::string & path);
